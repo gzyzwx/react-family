@@ -5,7 +5,7 @@ module.exports ={
     entry:path.join(__dirname,"./src/index.js"),
     output: {
         path: path.join(__dirname,"./dist"),
-        filename: '[hash]-bundle.js'
+        filename: 'bundle.js'
     },
     module: {
         rules:[
@@ -15,5 +15,8 @@ module.exports ={
                 include: path.join(__dirname,"./src")
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname,"./dist")
     }
 }
