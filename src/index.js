@@ -3,6 +3,12 @@ import ReactDom from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import getRouter from './router/index.js';
 
+
+import store from './store';
+
+// 打印初始状态
+console.log(store.getState());
+
 /*初始化*/
 renderWithHotReload(getRouter());
 
