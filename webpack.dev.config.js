@@ -45,7 +45,8 @@ module.exports ={
             pages: path.join(__dirname, "./src/pages"),
             components: path.join(__dirname,"./src/components"),
             router: path.join(__dirname, "./src/router"),
-            containers: path.join(__dirname,"./src/containers")
+            containers: path.join(__dirname,"./src/containers"),
+            actions: path.join(__dirname,"./src/actions")
         }
     },
     plugins:[

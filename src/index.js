@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import getRouter from './router/index.js';
-
+import {Provider} from 'react-redux';
 
 import store from './store';
 
@@ -24,7 +24,9 @@ console.log("color")
 function renderWithHotReload(RootElement) {
     ReactDom.render(
         <AppContainer>
-            {RootElement}
+            <Provider store={store}>
+                {RootElement}
+            </Provider>
         </AppContainer>,
         document.getElementById('app')
     )
