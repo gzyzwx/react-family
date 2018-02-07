@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUserInfo} from "actions/userActions.js";
 
+import "./style.less";
+
 class UserInfo extends Component {
 
     render() {
         const {userInfo, isLoading, errorMsg} = this.props.userInfo;
-        debugger
         return (
-            <div>
+            <div className = "abc">
                 {
                     isLoading ? '请求信息中......' :
                         (

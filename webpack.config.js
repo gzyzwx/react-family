@@ -1,20 +1,11 @@
- // webpack-dev-server --config webpack.dev.config.js --color --progress --hot
- //   上面可以实现热替换  或者使用以下方法，效果一样
-
- // webpack-dev-server --config webpack.dev.config.js --color --progress 
-// const webpack = require('webpack');
-// devServer: {
-//     hot: true
-// }
-
-// plugins:[
-//      new webpack.HotModuleReplacementPlugin()
-// ]
 
 const path = require("path");
 const webpack = require('webpack');
 
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
+const extractTextWebpackPugin = require('extract-text-webpack-plugin');
 
 module.exports ={
     entry:{
@@ -26,10 +17,11 @@ module.exports ={
     },
     output: {
         path: path.join(__dirname,"./dist"),
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[chunkhash].js'
+        filename: '[name].[chunkhash].js',
+        chunkFilename: '[name].[chunkhash].js',
+        publicPath: '/'
     },
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-source-map',
     module: {
         rules:[
             {
@@ -39,7 +31,10 @@ module.exports ={
             },
             {
                 test: /\.less$/,
-                use: ["style-loader","css-loader","less-loader"],
+                use: extractTextWebpackPugin.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader","less-loader"]
+                }),
                 include: path.join(__dirname,"./src")
             },
             {
@@ -53,14 +48,6 @@ module.exports ={
             }
         ]
     },
-    devServer: {
-        contentBase: path.join(__dirname,"./dist"),
-        historyApiFallback: true,
-        host:"0.0.0.0",
-        port: 8080,
-        hot: true
-        // color: true,   //报错
-    },
     resolve: {
         alias: {
             pages: path.join(__dirname, "./src/pages"),
@@ -72,14 +59,27 @@ module.exports ={
         }
     },
     plugins:[
-        new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
             template: "./index.html",
             filename: "index.html"
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        })
+            name: 'vendor',
+            name: 'runtime'
+        }),
+        new uglifyJSPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+             }
+         }),
+         new webpack.HashedModuleIdsPlugin(),
+         new cleanWebpackPlugin(['dist']),
+         new extractTextWebpackPugin({
+             filename: '[name].[contenthash:5].css',
+             allChunks: true
+         })
    ]
 }
+
 

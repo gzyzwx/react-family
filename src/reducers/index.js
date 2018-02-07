@@ -1,9 +1,15 @@
+import {combineReducers} from 'redux'
+
 import counter from './countsReducers.js';
 import userInfo from './userInfoReducers.js'
 
-export default function combineReducers(state = {}, action) {
-    return {
-        counter: counter(state.counter, action),
-        userInfo: userInfo(state.userInfo, action)
-    }
-}
+export default combineReducers({
+    counter,
+    userInfo
+})
+// export default function combineReducers(state = {}, action) {
+//     return {
+//         counter: counter(state.counter, action),
+//         userInfo: userInfo(state.userInfo, action)
+//     }
+// }
