@@ -6,6 +6,7 @@ class UserInfo extends Component {
 
     render() {
         const {userInfo, isLoading, errorMsg} = this.props.userInfo;
+        debugger
         return (
             <div>
                 {
@@ -25,20 +26,20 @@ class UserInfo extends Component {
     }
 }
 
-// export default connect((state) => ({userInfo: state.userInfo}), {getUserInfo})(UserInfo);
+export default connect((state) => ({userInfo: state.userInfo}), {getUserInfo})(UserInfo);
 
-const mapStateToProps = (state) => {
-    return {
-        userInfo: state.userInfo
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         userInfo: state.userInfo
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getUserInfo: () => {
-            dispatch(getUserInfo())
-        },
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getUserInfo: () => {
+//             dispatch(getUserInfo())
+//         },
+//     }
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(UserInfo);
+// export default connect(mapStateToProps,mapDispatchToProps)(UserInfo);

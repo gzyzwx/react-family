@@ -6,6 +6,7 @@ import Home from '../components/home/index.js';
 import Page1 from '../components/page1/index.js';
 import counter from 'pages/counter/index.js';
 import userInfo from 'pages/userInfo/index.js';
+import Index from 'pages/index/index.js';
 
 const getRouter = () => {
     return (
@@ -16,12 +17,14 @@ const getRouter = () => {
                     <li><Link to="/page1">Page1</Link></li>
                     <li><Link to="/counter">counter</Link></li>
                     <li><Link to="/userInfo">userInfo</Link></li>
+                    <li><Link to="/index">index</Link></li>
                 </ul>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/page1" component={Page1}/>
                     <Route path="/counter" component={counter}/>
                     <Route path="/userInfo" component={userInfo}/>
+                    <Route path="/index" component={Index}/>
                 </Switch>
             </div>
         </Router>

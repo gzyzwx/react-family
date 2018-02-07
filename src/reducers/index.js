@@ -4,6 +4,6 @@ import userInfo from './userInfoReducers.js'
 export default function combineReducers(state = {}, action) {
     return {
         counter: counter(state.counter, action),
-        userInfo: counter(state.userInfo, action)
+        userInfo: userInfo(state.userInfo, action)
     }
 }
