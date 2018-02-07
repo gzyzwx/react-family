@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Home from '../components/home/index.js';
 import Page1 from '../components/page1/index.js';
 import counter from 'pages/counter/index.js';
+import userInfo from 'pages/userInfo/index.js';
 
 const getRouter = () => {
     return (
@@ -14,11 +15,13 @@ const getRouter = () => {
                     <li><Link to="/">首页</Link></li>
                     <li><Link to="/page1">Page1</Link></li>
                     <li><Link to="/counter">counter</Link></li>
+                    <li><Link to="/userInfo">userInfo</Link></li>
                 </ul>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/page1" component={Page1}/>
                     <Route path="/counter" component={counter}/>
+                    <Route path="/userInfo" component={userInfo}/>
                 </Switch>
             </div>
         </Router>
