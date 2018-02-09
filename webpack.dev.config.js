@@ -39,7 +39,8 @@ module.exports ={
             },
             {
                 test: /\.less$/,
-                use: ["style-loader","css-loader","less-loader"],
+                // use: ["style-loader","css-loader","less-loader"],
+                use: ["style-loader","css-loader?modules&localIdentName=[name]-[hash:base64:5]","less-loader"],
                 include: path.join(__dirname,"./src")
             },
             {

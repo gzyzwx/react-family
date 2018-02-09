@@ -33,8 +33,9 @@ module.exports ={
                 test: /\.less$/,
                 use: extractTextWebpackPugin.extract({
                     fallback: "style-loader",
-                    use: ["css-loader","less-loader"]
+                    use: ["css-loader?modules&localIdentName=[name]-[hash:base64:5]","less-loader"]
                 }),
+                // use:["style-loader", "css-loader?modules","less-loader"],
                 include: path.join(__dirname,"./src")
             },
             {

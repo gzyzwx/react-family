@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUserInfo} from "actions/userActions.js";
 
-import "./style.less";
-
+import style from "./style.less";
+console.log(style)
+import classNames from 'classnames/bind'
+const classMap = classNames.bind(style)
+console.log(classMap)
+console.log(style['abc'])
+console.log(classMap('abc'))
 class UserInfo extends Component {
 
     render() {

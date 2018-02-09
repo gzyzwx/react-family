@@ -9,7 +9,7 @@ import Page1 from 'bundle-loader?lazy&name=page1!components/page1/index.js';
 import counter from 'bundle-loader?lazy&name=counter!pages/counter/index.js';
 import userInfo from 'bundle-loader?lazy&name=userInfo!pages/userInfo/index.js';
 import Index from 'bundle-loader?lazy&name=index!pages/index/index.js';
-
+import ClassNamesPage from 'bundle-loader?lazy&name=classNames!pages/classNames/index.js'
 
 const Loading = function () {
     return <div>Loading...</div>
@@ -33,6 +33,7 @@ const getRouter = () => {
                     <li><Link to="/counter">counter</Link></li>
                     <li><Link to="/userInfo">userInfo</Link></li>
                     <li><Link to="/index">index</Link></li>
+                    <li><Link to="/classNames">classNames</Link></li>
                 </ul>
                 <Switch>
                     <Route exact path="/" component={createComponent(Home)}/>
@@ -40,6 +41,7 @@ const getRouter = () => {
                     <Route path="/counter" component={createComponent(counter)}/>
                     <Route path="/userInfo" component={createComponent(userInfo)}/>
                     <Route path="/index" component={createComponent(Index)}/>
+                    <Route path="/classNames" component={createComponent(ClassNamesPage)}/>
                 </Switch>
             </div>
         </Router>
