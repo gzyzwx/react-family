@@ -14,7 +14,7 @@ class UserInfo extends Component {
     render() {
         const {userInfo, isLoading, errorMsg} = this.props.userInfo;
         return (
-            <div className = "abc">
+            <div className = "">
                 {
                     isLoading ? '请求信息中......' :
                         (

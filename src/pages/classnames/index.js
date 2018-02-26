@@ -18,16 +18,17 @@ let classb = classMap('abc')
 console.log(classa === classb) // true
 
 
-export default class classNamesPage extends Component {
+export default class ClassNamesPage extends Component {
 
     render() {
         return (
-            <div className = "abc">
-                
+            <div className = {classMap('a')}>
+                aaabbddddd22333
             </div>
         )
     }
 }
+
 
 // export default connect((state) => ({userInfo: state.userInfo}), {getUserInfo})(classNames);
 

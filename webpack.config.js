@@ -1,4 +1,4 @@
-
+/*
 const path = require("path");
 const webpack = require('webpack');
 
@@ -95,5 +95,45 @@ module.exports ={
          })
    ]
 }
+*/
 
+// webpack merge
+const path = require("path");
+const merge = require('webpack-merge');
+const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const extractTextWebpackPugin = require('extract-text-webpack-plugin');
 
+const commonConfig = require('./webpack.common.config.js');
+
+const publicConfig = {
+    devtool: 'cheap-module-source-map',
+    module: {
+        rules: [{
+            test: /\.less$/,
+            use: extractTextWebpackPugin.extract({
+                fallback: "style-loader",
+                use: ["css-loader?modules&localIdentName=[name]-[hash:base64:5]","less-loader"]
+            }),
+            // use:["style-loader", "css-loader?modules","less-loader"],
+            include: path.join(__dirname,"./src")
+        }]
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist/*.*']),
+        new UglifyJSPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new extractTextWebpackPugin({
+            filename: '[name].[contenthash:5].css',
+            allChunks: true
+        })
+    ]
+
+};
+
+module.exports = merge(commonConfig, publicConfig);
